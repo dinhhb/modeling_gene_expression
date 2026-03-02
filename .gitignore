@@ -4,6 +4,6 @@ venv/
 .DS_Store
 .vscode/
 .idea/
-dataset/
+# dataset/
 datafiles/
 preprocessed_datasets/
