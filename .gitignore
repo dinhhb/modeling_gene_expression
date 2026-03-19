@@ -1,9 +1,10 @@
 __pycache__/
 .venv
 venv/
+
 .DS_Store
 .vscode/
 .idea/
-# dataset/
-datafiles/
-preprocessed_datasets/
+dataset/
+works_on_mutation/
+.Rproj.user
