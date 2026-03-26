@@ -8,3 +8,12 @@ venv/
 dataset/
 works_on_mutation/
 .Rproj.user
+
+# R temporary and workspace files
+.RData
+.RDataTmp
+.RDataTmp1
+.RDataTmp2
+.RDataTmp3
+.Rhistory
+.Rapp.history
