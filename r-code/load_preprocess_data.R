@@ -1,3 +1,31 @@
+# Install CRAN packages
+#install.packages(c("data.table", "ggplot2", "ggprism"), dependencies = TRUE)
+
+# Install Bioconductor packages
+#if (!require("BiocManager", quietly = TRUE))
+#  install.packages("BiocManager")
+
+#BiocManager::install(c("GEOquery", "limma", "edgeR", "sva", "lme4"), dependencies = TRUE)
+
+# Load the libraries
+library(data.table)
+library(ggplot2)
+library(ggprism)
+library(limma)
+library(edgeR)
+library(sva)
+library(lme4)
+library(readr)
+library(ggfortify)
+library(ggprism)
+library(pheatmap)
+
+
+# Load data
+exprmx <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/gex_mat/gex_pre.csv")
+meta <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/sample_source/gex_pre.csv")
+
+
 meta$batch <- as.factor(meta$source)
 # meta$treatment ...
 
@@ -34,24 +62,3 @@ count_tbl_pca <- t(apply(count_tbl_low_rm2, 1, function(x) {
 }))
 
 cat("NAs after imputation:", sum(is.na(count_tbl_pca)), "\n")  # should be 0
-
-# Log transform=
-shift <- abs(min(count_tbl_pca)) + 1
-count_tbl_log <- log2(count_tbl_pca + shift)
-
-# Transpose count matrix for PCA
-count_tbl_low_rm_t <- as.data.frame(t(count_tbl_log))
-
-# Perform PCA
-pca_prep <- prcomp(count_tbl_low_rm_t, scale. = TRUE)
-
-# Create PCA plot colored by batch
-pca_plot_batch <- autoplot(pca_prep, label = F, data = meta,
-                           colour = "batch") +
-  theme_prism(base_size = 16) +
-  ggtitle("PCA Plot Before Batch Effect Correction") +
-  theme(plot.title = element_text(hjust = 0.5))
-
-# Save the plot
-ggsave("plots/pca_plot_batch_unadjusted.png", pca_plot_batch,
-       device = "png", units = "cm", height = 12, width = 22)
