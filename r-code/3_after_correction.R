@@ -1,5 +1,10 @@
-batch_corrected_limma <- removeBatchEffect(count_tbl_log,
-                                         batch = meta$batch)
+design_mat <- model.matrix(~pfs, data = meta)
+
+batch_corrected_limma <- removeBatchEffect(
+  count_tbl_log,
+  design = design_mat,
+  batch = meta$batch
+)
 
 # Visualize the results with PCA
 pca_prep_batch_limma <- prcomp(t(batch_corrected_limma), scale. = TRUE)
@@ -23,7 +28,7 @@ batch_corrected_df <- cbind(HGNC = rownames(batch_corrected_limma), batch_correc
 
 # Save to csv
 write_csv(batch_corrected_df, 
-          "~/PycharmProjects/internship-m2-melanoma/main/dataset/created/gex_mat_corrected/gex_pre.csv")
+          "~/PycharmProjects/internship-m2-melanoma/main/dataset/created/gex_mat_corrected.csv")
 
 
 # ── After limma correction — Gene × Sample heatmap (top 25 variable genes) ──
@@ -42,6 +47,6 @@ p_after <- pheatmap(expr_top25_corrected,
                     clustering_method        = "ward.D2",
                     main              = "After limma Batch Correction (top 25 variable genes)",
                     fontsize          = 11,
-                    filename          = "plots/heatmap_after_correction.png",
+                    filename          = "plots/heatmap_after_correction_pfs.png",
                     width             = 22 / 2.54,
                     height            = 20 / 2.54)

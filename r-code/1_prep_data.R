@@ -22,19 +22,19 @@ library(pheatmap)
 
 
 # Load data
-exprmx <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/gex_mat/gex_pre.csv")
-meta <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/sample_source/gex_pre.csv")
+exprmx <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/gex_mat.csv")
+meta <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/sample_source.csv")
 
 
 meta$batch <- as.factor(meta$source)
-# meta$treatment ...
+meta$pfs <- as.factor(meta$pfs_label)
 
 gene_ids <- exprmx$HGNC
 exprmx_mat <- as.matrix(exprmx[, -1])
 rownames(exprmx_mat) <- gene_ids
 
 # Count samples where gene is expressed (> 0), ignoring NAs
-n_expressed <- rowSums(exprmx_mat > 0, na.rm = TRUE)
+# n_expressed <- rowSums(exprmx_mat > 0, na.rm = TRUE)
 
 # Count samples where gene was actually measured (not NA)
 n_measured  <- rowSums(!is.na(exprmx_mat))
@@ -44,7 +44,8 @@ perc_keep <- 0.8    # keep genes expressed at least 80% of samples
 
 # Option A — expressed in ≥80% of MEASURED samples (recommended)
 # respects the fact that NAs = not measured, not absent
-gene_keep <- (n_expressed / n_measured) >= perc_keep
+# gene_keep <- (n_expressed / n_measured) >= perc_keep
+gene_keep <- (n_measured / ncol(exprmx_mat)) >= 0.8
 
 # Create a filtered count matrix
 count_tbl_low_rm <- exprmx_mat[gene_keep, ]

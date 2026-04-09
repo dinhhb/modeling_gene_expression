@@ -27,14 +27,24 @@ library(pheatmap)
 batch_vec <- meta$batch          # factor: as.factor(meta$source)
 
 # Annotation for heatmap columns (samples)
-annot_df <- data.frame(Batch = batch_vec,
-                       row.names = colnames(count_tbl_log))
+annot_df <- data.frame(
+  PFS = meta$pfs,
+  Batch = batch_vec,
+  row.names = colnames(count_tbl_log)
+)
 
 # Colour palette per batch level
 n_batches  <- nlevels(batch_vec)
 batch_cols <- setNames(RColorBrewer::brewer.pal(max(3, n_batches), "Set2")[seq_len(n_batches)],
                        levels(batch_vec))
-annot_cols <- list(Batch = batch_cols)
+n_pfs_levels <- nlevels(meta$pfs)
+pfs_cols <- setNames(RColorBrewer::brewer.pal(max(3, n_pfs_levels), "Dark2")[seq_len(n_pfs_levels)],
+                     levels(meta$pfs))
+
+annot_cols <- list(
+  Batch = batch_cols,
+  PFS = pfs_cols
+)
 
 # ── Before correction — Gene × Sample heatmap (top 25 variable genes) ──────
 top25_idx  <- order(apply(count_tbl_log, 1, var), decreasing = TRUE)[1:25]
