@@ -9,6 +9,6 @@ dataset/
 works_on_mutation/
 .Rproj.user
 
-.claude
+.claude/
 # R temporary and workspace files
 Melanoma.Rproj
