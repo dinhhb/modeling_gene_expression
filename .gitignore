@@ -9,11 +9,6 @@ dataset/
 works_on_mutation/
 .Rproj.user
 
+.claude
 # R temporary and workspace files
-.RData
-.RDataTmp
-.RDataTmp1
-.RDataTmp2
-.RDataTmp3
-.Rhistory
-.Rapp.history
+Melanoma.Rproj
