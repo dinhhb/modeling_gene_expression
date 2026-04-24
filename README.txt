@@ -12,6 +12,6 @@ SUMMARY OF THE PIPELINES:
                                                                     -> gex_mat, sample_source)
 batch-correction/main.r         : Perform batch correction          (gex_mat, sample_source 
                                                                     -> gex_mat_corrected)
-4_clinical_gex_corrected.ipynb  : Merge clinical and GEX dataset    (gex_mat_corrected, clinical_gex 
+4_leakage_pipe.ipynb       : Merge dataset, feature selection and run model   
+                                                                    (gex_mat_corrected, clinical_gex 
                                                                     -> clinical_gex_corrected)
-5_clinical_gex_full.ipynb       : Feature selection and run model   (clinical_gex)

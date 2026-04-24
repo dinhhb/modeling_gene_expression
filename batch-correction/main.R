@@ -99,6 +99,12 @@ plot_heatmap_func(gex_mat_log, meta, "Before Correction", "plots/heatmap_var_bef
 design_mat <- model.matrix(~pfs, data = meta)
 corrected_mat <- removeBatchEffect(gex_mat_log, design = design_mat, batch = meta$batch)
 
+gex_mat_df <- as.data.frame(corrected_mat)
+gex_mat_df <- cbind(sample_id = rownames(gex_mat_log), gex_mat_df)
+
+write_csv(gex_mat_df, 
+          "~/PycharmProjects/internship-m2-melanoma/main/dataset/created/gex_mat_corrected.csv")
+
 # Visualize After
 plot_pca_func(corrected_mat, meta, "After limma Correction (PCA)", "plots/pca_after.png")
 plot_heatmap_func(corrected_mat, meta, "After Correction", "plots/heatmap_var_after.png")
