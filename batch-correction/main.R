@@ -97,7 +97,8 @@ plot_heatmap_func(gex_mat_log, meta, "Before Correction", "plots/heatmap_var_bef
 
 # Batch Correction
 design_mat <- model.matrix(~pfs, data = meta)
-corrected_mat <- removeBatchEffect(gex_mat_log, design = design_mat, batch = meta$batch)
+# corrected_mat <- removeBatchEffect(gex_mat_log, design = design_mat, batch = meta$batch)
+corrected_mat <- removeBatchEffect(gex_mat_log, batch = meta$batch)
 
 gex_mat_df <- as.data.frame(corrected_mat)
 gex_mat_df <- cbind(sample_id = rownames(gex_mat_log), gex_mat_df)

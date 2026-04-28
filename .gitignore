@@ -10,5 +10,3 @@ works_on_mutation/
 .Rproj.user
 
 .claude/
-# R temporary and workspace files
-Melanoma.Rproj
