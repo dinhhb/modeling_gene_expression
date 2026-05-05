@@ -10,6 +10,10 @@ library(RColorBrewer)
 
 # 1. FUNCTION: PLOT PCA
 plot_pca_func <- function(gex_mat, meta, title, filename) {
+  # Filter out 0-variance genes
+  gene_var <- apply(gex_mat, 1, var)
+  gex_mat  <- gex_mat[gene_var > 0, ]
+
   pca_res <- prcomp(t(gex_mat), scale. = TRUE)
   
   p <- autoplot(pca_res, label = FALSE, data = meta, colour = "batch") +
