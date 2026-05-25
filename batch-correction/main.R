@@ -21,7 +21,7 @@ plot_pca_func <- function(gex_mat, meta, title, filename) {
     ggtitle(title) +
     theme(plot.title = element_text(hjust = 0.5))
   
-  ggsave(filename, p, device = "png", units = "cm", height = 12, width = 22)
+  ggsave(filename, p, device = "png", units = "cm", height = 15, width = 20)
   return(p)
 }
 
@@ -44,7 +44,7 @@ plot_heatmap_func <- function(gex_mat, meta, title, filename) {
   annot_cols <- list(Batch = batch_cols, PFS = pfs_cols)
   
   # Clustering/Top Var Genes
-  top25_idx <- order(apply(gex_mat, 1, var), decreasing = TRUE)[1:25]
+  top25_idx <- order(apply(gex_mat, 1, var), decreasing = TRUE)[1:20]
   gex_mat_top25 <- gex_mat[top25_idx, ]
   
   pheatmap(gex_mat_top25,
