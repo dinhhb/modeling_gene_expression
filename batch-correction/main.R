@@ -65,8 +65,8 @@ plot_heatmap_func <- function(gex_mat, meta, title, filename) {
 }
 # --- Prepare data ---
 
-gex_mat_raw <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/three-classes/gex_mat.csv")
-meta <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/three-classes/sample_source.csv")
+gex_mat_raw <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/binary/gex_mat_rna.csv")
+meta <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/binary/sample_source_rna.csv")
 
 meta$batch <- as.factor(meta$source)
 meta$pfs <- as.factor(meta$pfs_label)
@@ -107,9 +107,10 @@ corrected_mat <- removeBatchEffect(gex_mat_log, batch = meta$batch)
 gex_mat_df <- as.data.frame(corrected_mat)
 gex_mat_df <- cbind(sample_id = rownames(gex_mat_log), gex_mat_df)
 
-write_csv(gex_mat_df, 
-          "~/PycharmProjects/internship-m2-melanoma/main/dataset/created/three-classes/gex_mat_corrected.csv")
+#write_csv(gex_mat_df, 
+#          "~/PycharmProjects/internship-m2-melanoma/main/dataset/created/binary/gex_mat_corrected.csv")
 
 # Visualize After
 plot_pca_func(corrected_mat, meta, "After limma Correction (PCA)", "plots/pca_after.png")
 plot_heatmap_func(corrected_mat, meta, "After Correction", "plots/heatmap_var_after.png")
+
