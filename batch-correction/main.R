@@ -1,3 +1,5 @@
+# In RStudio, open Project at path ~/PycharmProjects/internship-m2-melanoma/main/batch-correction
+
 library(data.table)
 library(ggplot2)
 library(ggprism)
@@ -65,8 +67,8 @@ plot_heatmap_func <- function(gex_mat, meta, title, filename) {
 }
 # --- Prepare data ---
 
-gex_mat_raw <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/binary/gex_mat_rna.csv")
-meta <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/binary/sample_source_rna.csv")
+gex_mat_raw <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/binary/gex_mat.csv")
+meta <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/binary/sample_source.csv")
 
 meta$batch <- as.factor(meta$source)
 meta$pfs <- as.factor(meta$pfs_label)
