@@ -10,7 +10,7 @@ library(ggfortify)
 library(pheatmap)
 library(RColorBrewer)
 
-# 1. FUNCTION: PLOT PCA
+# 1. PLOT PCA
 plot_pca_func <- function(gex_mat, meta, title, filename) {
   # Filter out 0-variance genes
   gene_var <- apply(gex_mat, 1, var)
@@ -27,7 +27,7 @@ plot_pca_func <- function(gex_mat, meta, title, filename) {
   return(p)
 }
 
-# 2. FUNCTION: PLOT HEATMAP
+# 2. PLOT HEATMAP
 plot_heatmap_func <- function(gex_mat, meta, title, filename) {
   annot_df <- data.frame(
     PFS = meta$pfs,
@@ -65,6 +65,7 @@ plot_heatmap_func <- function(gex_mat, meta, title, filename) {
            width = 22 / 2.54,
            height = 20 / 2.54)
 }
+
 # --- Prepare data ---
 
 gex_mat_raw <- read_csv("~/PycharmProjects/internship-m2-melanoma/main/dataset/created/binary/gex_mat.csv")
