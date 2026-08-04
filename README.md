@@ -13,7 +13,7 @@ Check out all weekly reports and complete reports of the project here: [Drive](h
 First, install all libaries (maybe create a virtual environment?):
 
 ```setup
-pip install numpy pandas scikit-learn scipy xgboost matplotlib seaborn shap shapiq optuna joblib polars pacmap umap-learn rpy2 lifelines imodels
+pip install numpy==2.3.5 pandas==2.3.3 scikit-learn==1.8.0 scipy==1.16.3 xgboost==3.2.0 matplotlib==3.10.9 seaborn==0.13.2 shap==0.51.0 shapiq==1.5.1 optuna==4.8.0 joblib==1.5.3 polars==1.39.0 pacmap==0.9.1 umap-learn==0.5.12 rpy2==3.6.4 lifelines==0.30.3 imodels==2.0.4
 ```
 Second, download these two datasets from MelanoDB: `clinical.csv` & `gene_expressions.csv` and save them into a folder `dataset/original`
 
